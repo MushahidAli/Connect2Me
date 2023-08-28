@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Fahkwang:wght@300&family=Poppins:wght@300&family=Press+Start+2P&family=Tilt+Prism&display=swap');
+
+.email-card-main {
+    position: relative;
+    background-color: rgb(230, 228, 228);
+    border: 0.5px solid lightgreen;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+.email-card-main p {
+    font-family: 'Chakra Petch', sans-serif !important;
+    font-size: 20px;
+    background-color: rgb(230, 228, 228);
+    color: black;
+    word-wrap: break-word;
+}
+
+.delete-icon {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    background-color: transparent;
+}

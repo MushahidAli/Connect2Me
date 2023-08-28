@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Fahkwang:wght@300&family=Poppins:wght@300&family=Press+Start+2P&family=Tilt+Prism&display=swap');
+
+.logo-heading {
+    font-family: 'Tilt Prism', cursive;
+    color: #00ff00 !important;
+    font-size: 35px !important;
+}
+
+.user-name {
+    cursor: pointer;
+}
+
+.send-email-modal {
+    padding: 20px;
+    color: black;
+    background-color: rgb(230, 228, 228);
+}
+
+.send-email-modal input,
+textarea {
+    color: black !important;
+    background-color: rgb(230, 228, 228) !important;
+}
+
+.send-email-modal button[type="submit"]:hover {
+    background-color: black;
+    color: white;
+}
+
+.send-email-modal ::placeholder {
+    color: rgb(15, 17, 23);
+}
+
+.heading {
+    color: black;
+    background-color: rgb(230, 228, 228);
+}
+
+.subheading {
+    background-color: rgb(230, 228, 228);
+}
+
+.email-card {
+    width: 80%;
+}
+
+.load-more:hover {
+    background-color: black;
+    color: white;
+}
+
+.modal-close {
+    position: absolute;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}

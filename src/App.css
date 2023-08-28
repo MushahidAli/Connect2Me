@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Fahkwang:wght@300&family=Poppins:wght@300&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: Fahkwang;
+    margin: 0;
+    background-color: rgb(15, 17, 23);
+    color: white;
+}
+
+input, textarea {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: rgb(15, 17, 23);
+    color: white;
+    padding: 10px;
+}
+
+::placeholder {
+    color: rgb(170, 170, 255);
+}
+
+a {
+    text-decoration: none !important;
+}
+
+form {
+    text-align: center;
+
+}
+
+.error {
+    color: red !important;
+}
+
+button {
+    outline: none;
+    border: none;
+    background-color: white;
+    color: black;
+    padding: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: black;
+    color: white;
+}
+
+img {
+    cursor: pointer;
+}
