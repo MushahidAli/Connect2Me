@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
-import { Modal } from 'react-bootstrap'
+import { Modal, Spinner } from 'react-bootstrap'
 import CustomErrorMessage from '../../assets/elements/ErrorMessage'
 import EmailCard from '../../assets/emailCard/'
 import { Formik } from 'formik'
@@ -18,6 +18,10 @@ export default function index() {
 
     //To Contain Error Log Eg: 'JWT EXPIRED', 'JWT MALFORMED', 'INVALID SIGNATURE'
     var error;
+
+    //Loader State Management
+    const [loadingMail, setLoadingMail] = useState(false);
+    const [loadingMore, setLoadingMore] = useState(false);
 
     //Modal-Handles, Increment-Counters, Email-Containers etc.,
     const handleClose = () => setShow(false);
@@ -81,8 +85,10 @@ export default function index() {
     //Loads 5++ EMAILS Upon Click
     async function loadMore() {
         setIncrement(increment + 5);
+        setLoadingMore(true);
         await axios.get(domain + `view_email/5/${increment}/${profile.token}`)
             .then(res => setViewEmailData(res.data))
+        setLoadingMore(false);
     }
 
     return (
@@ -126,8 +132,10 @@ export default function index() {
                         onSubmit={
                             async (values) => {
                                 var checkAvailability = "";
+                                setLoadingMail(true);
                                 await axios.get(domain + 'check_availability/' + values.to.toLowerCase())
                                     .then(res => checkAvailability = res.data._id)
+                                setLoadingMail(false);
                                 if (!checkAvailability) {
                                     toast.error('No Such Email Exists!', {
                                         position: toast.POSITION.TOP_RIGHT
@@ -170,7 +178,7 @@ export default function index() {
                                     <textarea name="message" rows="4" placeholder="  Type In Your Message . . ." value={values.message} onChange={handleChange} onBlur={handleBlur}></textarea><br />
                                     <CustomErrorMessage errors={errors} touched={touched} name="message" /><br /><br />
                                     <button type="submit">
-                                        SEND
+                                        {loadingMail ? (<Spinner animation="grow" variant="secondary" />) : ('SEND')}
                                     </button>
                                 </div>
                             </form>
@@ -196,7 +204,9 @@ export default function index() {
                         (viewEmailData.length > 0) ?
                             <div>
                                 {viewEmailData.map((element, i) => <EmailCard key={i} element={element} />)}
-                                <button className="load-more" onClick={loadMore}>LOAD MORE</button><br /><br />
+                                <button className="load-more" onClick={loadMore}>
+                                    {loadingMore ? (<Spinner animation="grow" variant="secondary" />) : ('LOAD MORE')}
+                                </button><br /><br />
                             </div>
                             :
                             <div className="my-5">
