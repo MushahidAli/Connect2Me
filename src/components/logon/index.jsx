@@ -5,6 +5,7 @@ import { Tabs, Tab, Spinner } from 'react-bootstrap'
 import { Formik } from 'formik'
 import axios from 'axios'
 import { domain, loginSchema, signupSchema } from '../utils/'
+import Loader from '../../assets/loader'
 import { PasswordInput } from '../../assets/FormElements'
 import CustomErrorMessage from '../../assets/elements/ErrorMessage'
 import Logo from '../../assets/logo.png'
@@ -66,7 +67,7 @@ export default function index() {
                                 <CustomErrorMessage errors={errors} touched={touched} name="password" /><br />
                                 <br />
                                 <button type="submit">
-                                    { loadingLogin ? (<Spinner animation="grow" variant="secondary" />) : ('LOGIN') }
+                                    { loadingLogin ? (<Loader />) : ('LOGIN') }
                                 </button>
                             </form>
                         )}
@@ -120,7 +121,7 @@ export default function index() {
                                 <CustomErrorMessage errors={errors} touched={touched} name="password" /><br />
                                 <br />
                                 <button type="submit">
-                                { loadingSignup ? (<Spinner animation="grow" variant="secondary" />) : ('SIGNUP') }
+                                { loadingSignup ? (<Loader />) : ('SIGNUP') }
                                 </button>
                             </form>
                         )}

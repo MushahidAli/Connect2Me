@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import { Modal, Spinner } from 'react-bootstrap'
 import CustomErrorMessage from '../../assets/elements/ErrorMessage'
 import EmailCard from '../../assets/emailCard/'
+import Loader from '../../assets/loader'
 import { Formik } from 'formik'
 import axios from 'axios'
 import { domain, profile, emailSchema, verifyToken } from '../utils/'
@@ -178,7 +179,7 @@ export default function index() {
                                     <textarea name="message" rows="4" placeholder="  Type In Your Message . . ." value={values.message} onChange={handleChange} onBlur={handleBlur}></textarea><br />
                                     <CustomErrorMessage errors={errors} touched={touched} name="message" /><br /><br />
                                     <button type="submit">
-                                        {loadingMail ? (<Spinner animation="grow" variant="secondary" />) : ('SEND')}
+                                        {loadingMail ? (<Loader />) : ('SEND')}
                                     </button>
                                 </div>
                             </form>
@@ -205,7 +206,7 @@ export default function index() {
                             <div>
                                 {viewEmailData.map((element, i) => <EmailCard key={i} element={element} />)}
                                 <button className="load-more" onClick={loadMore}>
-                                    {loadingMore ? (<Spinner animation="grow" variant="secondary" />) : ('LOAD MORE')}
+                                    {loadingMore ? (<Loader />) : ('LOAD MORE')}
                                 </button><br /><br />
                             </div>
                             :
