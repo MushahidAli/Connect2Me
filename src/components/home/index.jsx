@@ -127,9 +127,14 @@ export default function index() {
                             <li className="nav-item" title="USER NAME" onClick={deleteHandleShow}>
                                 <div className="user-name">{profile.email.split('@')[0].toUpperCase()} [{howManyEmails} EMAIL(S)]&nbsp;&nbsp;</div>
                             </li>
+                            {
+                            (howManyEmails > 0) ? 
                             <li className="nav-item">
                                 <img src={DeleteEmail} width={50} height={50} title="DELETE ALL EMAILS" alt="DELETE ALL EMAILS" onClick={deleteEmailHandleShow} />&nbsp;&nbsp;
-                            </li>
+                            </li> 
+                            : 
+                            ('')
+                            }
                             <li className="nav-item">
                                 <img src={SendEmail} width={50} height={50} title="SEND AN EMAIL" alt="SEND AN EMAIL" onClick={handleShow} />&nbsp;&nbsp;
                             </li>
