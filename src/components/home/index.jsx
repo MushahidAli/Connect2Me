@@ -12,6 +12,7 @@ import { MdDeleteSweep } from 'react-icons/md'
 import { MdClose } from 'react-icons/md'
 import { MdWarning } from 'react-icons/md'
 import Logout from '../../assets/logout.jpg'
+import DeleteEmail from '../../assets/delete_email.png'
 import SendEmail from '../../assets/logo.png'
 import './index.css'
 
@@ -29,8 +30,11 @@ export default function index() {
     const handleShow = () => setShow(true);
     const deleteHandleClose = () => setDeleteShow(false);
     const deleteHandleShow = () => setDeleteShow(true);
+    const deleteEmailHandleClose = () => setDeleteEmailShow(false);
+    const deleteEmailHandleShow = () => setDeleteEmailShow(true);
     const [show, setShow] = useState(false);
     const [deleteShow, setDeleteShow] = useState(false);
+    const [deleteEmailShow, setDeleteEmailShow] = useState(false);
     const [increment, setIncrement] = useState(5);
     const [viewEmailData, setViewEmailData] = useState([]);
     const [howManyEmails, setHowManyEmails] = useState();
@@ -83,6 +87,21 @@ export default function index() {
         }
     }
 
+    //To Delete All Emails -> IF `SESSION` Exists
+    async function deleteAllEmails() {
+        await axios.post(domain + 'delete_all_emails', { token: profile.token })
+            .then(res => error = res.data.error);
+        if (error) {
+            toast.error(JSON.stringify(error).toUpperCase(), {
+                position: toast.POSITION.TOP_RIGHT
+            });
+            error = "";
+        }
+        else {
+            window.location.href = "";
+        }
+    }
+
     //Loads 5++ EMAILS Upon Click
     async function loadMore() {
         setIncrement(increment + 5);
@@ -107,6 +126,9 @@ export default function index() {
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
                             <li className="nav-item" title="USER NAME" onClick={deleteHandleShow}>
                                 <div className="user-name">{profile.email.split('@')[0].toUpperCase()} [{howManyEmails} EMAIL(S)]&nbsp;&nbsp;</div>
+                            </li>
+                            <li className="nav-item">
+                                <img src={DeleteEmail} width={50} height={50} title="DELETE ALL EMAILS" alt="DELETE ALL EMAILS" onClick={deleteEmailHandleShow} />&nbsp;&nbsp;
                             </li>
                             <li className="nav-item">
                                 <img src={SendEmail} width={50} height={50} title="SEND AN EMAIL" alt="SEND AN EMAIL" onClick={handleShow} />&nbsp;&nbsp;
@@ -195,6 +217,17 @@ export default function index() {
                     </div><br />
                     <div className="subheading text-center">
                         <button type="submit" onClick={deleteAccount}>YES</button>
+                    </div>
+                </div>
+            </Modal>
+
+            <Modal show={deleteEmailShow} onHide={deleteEmailHandleClose} centered>
+                <div className="send-email-modal">
+                    <div className="heading display-5 d-flex align-items-center">
+                        <MdDeleteSweep />  DELETE<br />ALL EMAILS? <MdClose onClick={deleteEmailHandleClose} className="modal-close" />
+                    </div><br />
+                    <div className="subheading text-center">
+                        <button type="submit" onClick={deleteAllEmails}>YES</button>
                     </div>
                 </div>
             </Modal>
