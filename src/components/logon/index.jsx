@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import md5 from 'md5'
-import { Tabs, Tab, Spinner } from 'react-bootstrap'
+import { Tabs, Tab } from 'react-bootstrap'
 import { Formik } from 'formik'
 import axios from 'axios'
 import { domain, loginSchema, signupSchema } from '../utils/'

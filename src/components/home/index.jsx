@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
-import { Modal, Spinner } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import CustomErrorMessage from '../../assets/elements/ErrorMessage'
 import EmailCard from '../../assets/emailCard/'
 import Loader from '../../assets/loader'
