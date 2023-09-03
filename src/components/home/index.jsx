@@ -24,6 +24,8 @@ export default function index() {
     //Loader State Management
     const [loadingMail, setLoadingMail] = useState(false);
     const [loadingMore, setLoadingMore] = useState(false);
+    const [loadingDeleteAllEmails, setLoadingDeleteAllEmails] = useState(false);
+    const [loadingDeleteAccount, setLoadingDeleteAccount] = useState(false);
 
     //Modal-Handles, Increment-Counters, Email-Containers etc.,
     const handleClose = () => setShow(false);
@@ -74,8 +76,10 @@ export default function index() {
 
     //To Delete Account -> IF `SESSION` Exists
     async function deleteAccount() {
+        setLoadingDeleteAccount(true);
         await axios.post(domain + 'delete_account', { email: profile.email, token: profile.token })
             .then(res => error = res.data.error);
+        setLoadingDeleteAccount(false);
         if (error) {
             toast.error(JSON.stringify(error).toUpperCase(), {
                 position: toast.POSITION.TOP_RIGHT
@@ -89,8 +93,10 @@ export default function index() {
 
     //To Delete All Emails -> IF `SESSION` Exists
     async function deleteAllEmails() {
+        setLoadingDeleteAllEmails(true);
         await axios.post(domain + 'delete_all_emails', { token: profile.token })
             .then(res => error = res.data.error);
+        setLoadingDeleteAllEmails(false);
         if (error) {
             toast.error(JSON.stringify(error).toUpperCase(), {
                 position: toast.POSITION.TOP_RIGHT
@@ -128,12 +134,12 @@ export default function index() {
                                 <div className="user-name">{profile.email.split('@')[0].toUpperCase()} [{howManyEmails} EMAIL(S)]&nbsp;&nbsp;</div>
                             </li>
                             {
-                            (howManyEmails > 0) ? 
-                            <li className="nav-item">
-                                <img src={DeleteEmail} width={50} height={50} title="DELETE ALL EMAILS" alt="DELETE ALL EMAILS" onClick={deleteEmailHandleShow} />&nbsp;&nbsp;
-                            </li> 
-                            : 
-                            ('')
+                                (howManyEmails > 0) ?
+                                    <li className="nav-item">
+                                        <img src={DeleteEmail} width={50} height={50} title="DELETE ALL EMAILS" alt="DELETE ALL EMAILS" onClick={deleteEmailHandleShow} />&nbsp;&nbsp;
+                                    </li>
+                                    :
+                                    ('')
                             }
                             <li className="nav-item">
                                 <img src={SendEmail} width={50} height={50} title="SEND AN EMAIL" alt="SEND AN EMAIL" onClick={handleShow} />&nbsp;&nbsp;
@@ -221,7 +227,9 @@ export default function index() {
                         <MdDeleteSweep />  DELETE<br />ACCOUNT? <MdClose onClick={deleteHandleClose} className="modal-close" />
                     </div><br />
                     <div className="subheading text-center">
-                        <button type="submit" onClick={deleteAccount}>YES</button>
+                        <button type="submit" onClick={deleteAccount}>
+                            {loadingDeleteAccount ? (<Loader />) : ('YES')}
+                        </button>
                     </div>
                 </div>
             </Modal>
@@ -232,7 +240,9 @@ export default function index() {
                         <MdDeleteSweep />  DELETE<br />ALL EMAILS? <MdClose onClick={deleteEmailHandleClose} className="modal-close" />
                     </div><br />
                     <div className="subheading text-center">
-                        <button type="submit" onClick={deleteAllEmails}>YES</button>
+                        <button type="submit" onClick={deleteAllEmails}>
+                            {loadingDeleteAllEmails ? (<Loader />) : ('YES')}
+                        </button>
                     </div>
                 </div>
             </Modal>
