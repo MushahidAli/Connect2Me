@@ -49,6 +49,11 @@ textarea {
     color: white;
 }
 
+.inbox-load {
+    color: blue;
+    cursor: pointer;
+}
+
 .modal-close {
     position: absolute;
     right: 10px;

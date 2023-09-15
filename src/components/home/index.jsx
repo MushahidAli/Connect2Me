@@ -11,6 +11,7 @@ import { MdCreate } from 'react-icons/md'
 import { MdDeleteSweep } from 'react-icons/md'
 import { MdClose } from 'react-icons/md'
 import { MdWarning } from 'react-icons/md'
+import { BiSolidDownload } from 'react-icons/bi'
 import Logout from '../../assets/logout.jpg'
 import DeleteEmail from '../../assets/delete_email.png'
 import SendEmail from '../../assets/logo.png'
@@ -26,6 +27,7 @@ export default function index() {
     const [loadingMore, setLoadingMore] = useState(false);
     const [loadingDeleteAllEmails, setLoadingDeleteAllEmails] = useState(false);
     const [loadingDeleteAccount, setLoadingDeleteAccount] = useState(false);
+    const [loadingViewMail, setLoadingViewMail] = useState(false);
 
     //Modal-Handles, Increment-Counters, Email-Containers etc.,
     const handleClose = () => setShow(false);
@@ -34,6 +36,7 @@ export default function index() {
     const deleteHandleShow = () => setDeleteShow(true);
     const deleteEmailHandleClose = () => setDeleteEmailShow(false);
     const deleteEmailHandleShow = () => setDeleteEmailShow(true);
+    const loadingViewMailClose = () => setLoadingViewMail(false);
     const [show, setShow] = useState(false);
     const [deleteShow, setDeleteShow] = useState(false);
     const [deleteEmailShow, setDeleteEmailShow] = useState(false);
@@ -63,10 +66,13 @@ export default function index() {
 
     //To View Mails And Get A Count Of All Mails
     async function viewMails() {
+        setIncrement(5);
+        setLoadingViewMail(true);
         await axios.get(domain + `view_email/5/0/${profile.token}`)
             .then(res => setViewEmailData(res.data))
         await axios.get(domain + `how_many_emails/${profile.token}`)
             .then(res => setHowManyEmails(res.data.emails))
+        setLoadingViewMail(false);
     }
 
     //To Avoid Multiple Renders
@@ -247,6 +253,17 @@ export default function index() {
                 </div>
             </Modal>
 
+            <Modal show={loadingViewMail} onHide={loadingViewMailClose} backdrop="static" keyboard={false} centered>
+                <div className="send-email-modal">
+                    <div className="heading display-5 d-flex align-items-center">
+                        <BiSolidDownload />  LOADING EMAILS...
+                    </div><br />
+                    <div className="subheading text-center">
+                        <Loader />
+                    </div>
+                </div>
+            </Modal>
+
             <center>
                 <div className="email-card">
                     {
@@ -261,7 +278,7 @@ export default function index() {
                             <div className="my-5">
                                 <MdWarning style={{ fontSize: '200px' }} /><br />
                                 <h3>INBOX <br />
-                                    NO EMAIL(S) LEFT TO <a href="">LOAD</a>
+                                    NO EMAIL(S) LEFT TO <span className="inbox-load" onClick={viewMails} title="Click To Load Your Emails">LOAD</span>
                                 </h3>
                             </div>
                     }
