@@ -137,7 +137,7 @@ export default function index() {
                     <div className="collapse navbar-collapse" id="navbarColor01">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
                             <li className="nav-item" title="USER NAME" onClick={deleteHandleShow}>
-                                <div className="user-name">{profile.email.split('@')[0].toUpperCase()} [{howManyEmails} EMAIL(S)]&nbsp;&nbsp;</div>
+                                <div id="user-name" className="user-name">{profile.email.split('@')[0].toUpperCase()} [<span id="email-count">{howManyEmails}</span> EMAIL(S)]&nbsp;&nbsp;</div>
                             </li>
                             {
                                 (howManyEmails > 0) ?
