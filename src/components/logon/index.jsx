@@ -23,7 +23,7 @@ export default function index() {
     return (
         <div className="logon-main">
             <ToastContainer style={{ position: 'relative', top: '0px' }} />
-            <center><a href=""><img src={Logo} width={100} height={100} alt="Logo" /></a></center>
+            <center><a href=""><img src={Logo} width={100} height={100} title="Connect2Me - Anonymous Emailing Service" alt="Logo" /></a></center>
             <Tabs defaultActiveKey="login" className="mb-3">
                 <Tab eventKey="login" title="LOGIN">
                     <Formik
@@ -67,7 +67,7 @@ export default function index() {
                                 <CustomErrorMessage errors={errors} touched={touched} name="password" /><br />
                                 <br />
                                 <button type="submit">
-                                    { loadingLogin ? (<Loader />) : ('LOGIN') }
+                                    {loadingLogin ? (<Loader />) : ('LOGIN')}
                                 </button>
                             </form>
                         )}
@@ -121,13 +121,17 @@ export default function index() {
                                 <CustomErrorMessage errors={errors} touched={touched} name="password" /><br />
                                 <br />
                                 <button type="submit">
-                                { loadingSignup ? (<Loader />) : ('SIGNUP') }
+                                    {loadingSignup ? (<Loader />) : ('SIGNUP')}
                                 </button>
                             </form>
                         )}
                     </Formik>
                 </Tab>
             </Tabs>
+            <div className="footer text-center">
+                &copy; Connect2Me<br />
+                <a href="https://github.com/mushahidali" target="_blank" title="Reach Me @ Github/MushahidAli">Mushahid Ali</a>
+            </div>
         </div>
     );
 }

@@ -1,6 +1,14 @@
 .logon-main {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -60%);
+    input {
+        border-bottom: 1px solid white;
+    }
+}
+
+.footer {
+    position: relative;
+    bottom: -40px;
 }

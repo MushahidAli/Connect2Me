@@ -10,7 +10,7 @@ export var profile = JSON.parse(localStorage.getItem('connect2me'));
 //DELETE EMAILS
 export async function deleteEmail(id) {
     await axios.post(domain + 'delete_email', { id: id });
-    window.location.href = "";
+    document.getElementById(id).remove();
 }
 
 //VERIFY TOKEN

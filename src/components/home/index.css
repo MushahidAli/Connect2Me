@@ -22,6 +22,10 @@ textarea {
     background-color: rgb(230, 228, 228) !important;
 }
 
+.send-email-modal button {
+    border: 1px solid black;
+}
+
 .send-email-modal button[type="submit"]:hover {
     background-color: black;
     color: white;
@@ -59,4 +63,10 @@ textarea {
     right: 10px;
     font-size: 20px;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    .logo-heading {
+        font-size: 20px !important
+    }
 }

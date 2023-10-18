@@ -130,7 +130,7 @@ export default function index() {
 
             <nav className="navbar navbar-expand-lg navbar-dark">
                 <div className="container-fluid">
-                    <a className="logo-heading navbar-brand" href="" title="CONNECT2ME - EMAILING SERVICE :)">&lt;CONNECT2ME /&gt;</a>
+                    <a className="logo-heading navbar-brand" href="" title="CONNECT2ME - ANONYMOUS EMAILING SERVICE :)">&lt;CONNECT2ME /&gt;</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
