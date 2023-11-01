@@ -53,6 +53,16 @@ export default function index() {
         }, 1000)
     }, []);
 
+    //Checks For New Incoming Messages
+    useEffect(() => {
+        setInterval(async () => {
+            await axios.get(domain + `how_many_emails/${profile.token}`)
+                .then(
+                    res => (res.data.emails > parseInt(document.getElementById("user-name").innerText.match(/\d+/g))) ? document.getElementById('new-message').innerHTML = `<a href="" title="Click To View">[ New Message - Click To View ]</a>` : document.getElementById('new-message').innerHTML = ``
+                );
+        }, 7000);
+    }, []);
+
     //Verify-Token-OnLoad
     useEffect(() => {
         verifyToken(profile.token);
@@ -265,6 +275,7 @@ export default function index() {
             </Modal>
 
             <center>
+                <div id="new-message"></div>
                 <div className="email-card">
                     {
                         (viewEmailData.length > 0) ?
