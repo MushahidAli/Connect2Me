@@ -58,7 +58,7 @@ export default function index() {
         setInterval(async () => {
             await axios.get(domain + `how_many_emails/${profile.token}`)
                 .then(
-                    res => (res.data.emails > parseInt(document.getElementById("user-name").innerText.match(/\d+/g))) ? document.getElementById('new-message').innerHTML = `<a href="" title="Click To View">[ New Message - Click To View ]</a>` : document.getElementById('new-message').innerHTML = ``
+                    res => (res.data.emails > parseInt(document.getElementById("email-count").innerText.match(/\d+/g))) ? document.getElementById('new-message').innerHTML = `<a href="" title="Click To View">[ New Message - Click To View ]</a>` : document.getElementById('new-message').innerHTML = ``
                 );
         }, 7000);
     }, []);

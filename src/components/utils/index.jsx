@@ -11,7 +11,7 @@ export var profile = JSON.parse(localStorage.getItem('connect2me'));
 export async function deleteEmail(id) {
     await axios.post(domain + 'delete_email', { id: id });
     document.getElementById(id).remove();
-    var emailNumber = parseInt(document.getElementById("user-name").innerText.match(/\d+/g)) - 1;
+    var emailNumber = parseInt(document.getElementById("email-count").innerText.match(/\d+/g)) - 1;
     document.getElementById("email-count").innerHTML = emailNumber;
 }
 
